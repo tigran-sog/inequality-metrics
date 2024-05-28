@@ -43,7 +43,7 @@ def generalised_mean3(dist,x,position,p):
     else:
         return (np.sum(np.power(dist,p)) / len(dist))**(1/p)
 
-E_array = [0,0.25,0.75,1,2,4,8]
+E_array = [0,0.25,0.75,1,2,4]
 
 # Plotting generalised (1,x)
 x_array = np.arange(0,4.01,0.01)
@@ -106,6 +106,7 @@ def plot_generalised_means(dist, position, x_range, E_array):
        p = 1 - E
        plt.plot(x_array, np.array([generalised_mean3(dist, x, position, p) for x in x_array]),
                 label = f'E = {E} (p = {p})')
+   plt.yticks(range(0,7))
    plt.title(f'Varying E for generalised means ({dist_title})')
    plt.ylabel('Generalisd mean')
    plt.xlabel(f'{dist_title}')
@@ -130,22 +131,7 @@ income_dists = {
    'USA' : [400, 900, 1300, 1900]
    }
 
-for key, value in income_dists.items():
-    plt.figure(figsize=(15,15))
-    mean_results = []
-    value = np.array(value, dtype=float)
-    arithmetic_mean = np.mean(value)
-    for E in E_array:
-        p = 1 - E
-        mean_results.append(generalised_mean2(value,p))
-    plt.plot(E_array,mean_results)
-    plt.xscale('log')
-    plt.title(f'Generalised mean of {key}\'s income distribution\nArithmetic mean of {arithmetic_mean}')
-    plt.ylabel('Generalised mean')
-    plt.xlabel('Value of E')
-    plt.grid()
-    plt.show()
-    
+
 
 plt.figure(figsize=(15,15))
 for key, value in income_dists.items():
