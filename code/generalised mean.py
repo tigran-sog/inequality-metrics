@@ -80,7 +80,7 @@ def plot_generalised_means(dist, position, x_range, E_array):
        plt.plot(x_array, np.array([generalised_mean3(dist, x, position, p) for x in x_array]),
                 label = f'E = {E} (p = {p})')
    plt.yticks(np.arange(0,y_max))
-   plt.title(f'Varying E for generalised means ({dist_title})')
+   plt.title(f'Varying E for generalised means {dist_title}')
    plt.ylabel('Generalisd mean')
    plt.xlabel('x')
    plt.tight_layout()
@@ -88,7 +88,7 @@ def plot_generalised_means(dist, position, x_range, E_array):
    plt.legend(loc = 'lower right')
 
 plt.figure(figsize=(10,10))
-plot_generalised_means(dist = [1,2], position = 1, x_range = 4, E_array = E_array)
+plot_generalised_means(dist = [1,3], position = 1, x_range = 4, E_array = E_array)
 plt.savefig('viz/generalised mean simple dist.png')
 plt.show()
 

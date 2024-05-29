@@ -41,13 +41,13 @@ We can simply demonstrate this by plotting the generalised mean of 1 and *x* acr
 
 The higher the parameter of E, the lower the generalised mean compared to the arithmetic mean (the blue line). But this is only the mean of two values and we want to understand how this "inequality aversion parameter" E responds to inequalities in a fuller income distribution.
 
-Below, I take a distribution representing average incomes at four quartiles. For each quartile, we vary its value while keeping the rest of the distribution fixed and plot the resulting generalised mean across different values of E.
+Below, I take a distribution representing average incomes at four quartiles. For each quartile, we vary its value while keeping the rest of the distribution fixed and plot the resulting generalised mean across different values of E. The line in blue represents the **arithmetic mean** whereas the line in green represents the **geomtric mean**, which is where a logarithmic relationship between income and utility is assumed.
 
 ![Image: Generalised means for quartile-segmented distribution](viz/generalised%20mean%20quartiles%20dist.png)
 
-A look at the first quartile (top left) compared the rest immediately shows how the Atkinson measure treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, varying x creates both the most *and* the least inequality compared to any other quartile in the distribution.
+A look at the first quartile (top left) compared the rest immediately shows how the Atkinson measure treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, therefore, varying x creates both the most *and* the least inequality compared to any other quartile in the distribution.
 
-In other words, making the lowest quartile particularly poor hugely affects increases the level of inequality determined across the whole income distribution. Whereas making it nearly indistinguishable to the quartile above it makes the whole income distribution more equal than when varying any other quartile. Comparatively, adjustments to the other quartiles yield only moderate levels of inequality at any level of that quartile.
+In other words, making the lowest quartile particularly poor hugely affects increases the level of inequality determined across the whole income distribution. Whereas making it nearly indistinguishable to the quartile above it also makes the whole income distribution more equal than when varying any other quartile. Comparatively, adjustments to the other quartiles yield only moderate levels of inequality at any level of that quartile.
 
 And what of the effect of E on how severely inequality is determined? In these graphs, we should focus less on the relative positions of the curves on the y-axis and more on the steepness of each individal curve to understand the effect of E. We can shed light on this artefact further by using real national income distributions.
 
