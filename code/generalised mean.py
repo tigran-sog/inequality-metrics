@@ -6,6 +6,7 @@ Created on Tue May 21 17:57:53 2024
 """
 
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import math
 from scipy.stats import gmean
@@ -62,90 +63,84 @@ plt.legend()
 plt.show()
 
 
-# Plotting generalised (2,x,6,8)
-four_value_dist = [2,4,6,8] # approximating income distribution 
-x_array = np.arange(2.01,6.00,0.01) # restricting x to be between first and third values
-plt.figure(figsize=(10,10))
-for E in E_array:
-    p = 1 - E
-    plt.plot(x_array, np.array([generalised_mean3(four_value_dist, x, 1, p) for x in x_array]),
-             label = f'E = {E} (p = {p})')
-plt.title('Varying E for generalised means of approximated income distributions')
-plt.ylabel('Generalisd mean')
-plt.xlabel('(2,x,6,8)')
-plt.tight_layout()
-plt.grid()
-plt.legend()
-plt.show()
-
-# Plotting generalised (4,x,12,16) [confirms that its only relative parts of the distribution that matters]
-four_value_dist = [4,8,12,16] # approximating income distribution 
-x_array = np.arange(4.01,12.00,0.01) # restricting x to be between first and third values
-plt.figure(figsize=(10,10))
-for E in E_array:
-    p = 1 - E
-    plt.plot(x_array, np.array([generalised_mean3(four_value_dist, x, 1, p) for x in x_array]),
-             label = f'E = {E} (p = {p})')
-plt.title('Varying E for generalised means of approximated income distributions')
-plt.ylabel('Generalisd mean')
-plt.xlabel('(4,x,12,16)')
-plt.tight_layout()
-plt.grid()
-plt.legend()
-plt.show()
-
 
 def plot_generalised_means(dist, position, x_range, E_array):
    #x_array = np.arange(dist[position-1]+0.01,dist[position-1]+x_range,0.01)
    x_array = np.arange(dist[position]-(x_range/2),dist[position]+(x_range/2),0.01)
    
+   # Finding maximum value for y-axis
+   dist_temp = dist.copy()
+   dist_temp[-1] = dist_temp[-1]+(x_range/2)
+   y_max = math.ceil(np.mean(dist))+0.05 
+   
    dist_title = dist.copy()
    dist_title[position] = 'x'
-   plt.figure(figsize=(10,10))
    for E in E_array:
        p = 1 - E
        plt.plot(x_array, np.array([generalised_mean3(dist, x, position, p) for x in x_array]),
                 label = f'E = {E} (p = {p})')
-   plt.yticks(range(0,7))
+   plt.yticks(np.arange(0,y_max))
    plt.title(f'Varying E for generalised means ({dist_title})')
    plt.ylabel('Generalisd mean')
-   plt.xlabel(f'{dist_title}')
+   plt.xlabel('x')
    plt.tight_layout()
-   plt.grid()
-   plt.legend()
-   plt.show()
+   plt.grid(True)
+   plt.legend(loc = 'lower right')
 
-plot_generalised_means(dist = [2,4,6,8], position = 0, x_range = 4, E_array = E_array)
-plot_generalised_means(dist = [2,4,6,8], position = 1, x_range = 4, E_array = E_array)
-plot_generalised_means(dist = [2,4,6,8], position = 2, x_range = 4, E_array = E_array)    
-plot_generalised_means(dist = [2,4,6,8], position = 3, x_range = 4, E_array = E_array)
+plt.figure(figsize=(10,10))
+plot_generalised_means(dist = [1,2], position = 1, x_range = 4, E_array = E_array)
+plt.savefig('viz/generalised mean simple dist.png')
+plt.show()
+
+plt.figure(figsize=(20,20))
+for i in range(0,4):
+    plt.subplot(2,2,i+1)
+    plot_generalised_means(dist = [2,4,6,8], position = i, x_range = 4, E_array = E_array)
+plt.savefig('viz/generalised mean quartiles dist.png')
+plt.show()
+
 
     
 ##############################################################################
 ##############################################################################
-income_dists = {
-   'Nigeria' : [100,500,750,1500],
-   'Armenia' : [100,250,500,650],
-   'Czechia' : [500, 750, 1200, 1600],
-   'Sweden' : [600, 900, 1300, 1500],
-   'USA' : [400, 900, 1300, 1900]
-   }
 
 
+#### Generating income distributions
 
-plt.figure(figsize=(15,15))
-for key, value in income_dists.items():
+
+#### Downloading existing income distributions
+#/ From Milanovic et al 2013, annual income per decile 1998-2008
+
+df = pd.read_stata('data/milanovic.dta')
+## Filter for only the largest 'year' values for each 'country'
+# This gets me a bunch of years around 2008
+df = df[df['year'] == df.groupby('country')['year'].transform('max')]
+
+# Remove any countries with at least one NAN in their income distributions
+df = df.groupby('country').filter(lambda x: x['RRinc'].notna().all())
+
+# Countries I want to look at
+countries = ['United States','Sweden','Czech Republic','Brazil','Nigeria','Armenia']
+
+df_subset = df[df['country'].isin(countries)]
+
+plt.figure(figsize=(10,10))
+for country in countries:
     mean_results = []
-    value = np.array(value, dtype=float)
+    value = df_subset[df_subset['country'] == country].iloc[:,10]
+    
     arithmetic_mean = np.mean(value)
     for E in E_array:
         p = 1 - E
         mean_results.append(generalised_mean2(value,p))
-    plt.plot(E_array,mean_results, label = f'{key}')
+    plt.plot(E_array,mean_results, label = f'{country}')
     plt.xscale('log')
+    plt.yscale('log')
     plt.title('Generalised mean of countries\' income distributions')
-    plt.ylabel('Generalised mean')
-    plt.xlabel('Value of E')
+    plt.ylabel('Generalised mean ($)')
+    plt.xlabel('Inequality aversion parameter (E)')
     plt.legend()
-plt.grid()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('viz/generalised means countries.png')
 plt.show()

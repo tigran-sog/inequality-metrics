@@ -31,11 +31,6 @@ df = df[df['year'] == df.groupby('country')['year'].transform('max')]
 df = df.groupby('country').filter(lambda x: x['RRinc'].notna().all())
 
 
-# Countries I want to look at
-countries = ['Nigeria','Brazil','Italy','United States','Sweden','Armenia']
-df_subset = df[df['country'].isin(countries)]
-
-
 ######### CODING ATKINSON INDEX IN PYTHON ##########
 income_dist = df[df['country'] == 'Armenia'].iloc[:,10]
 

@@ -20,14 +20,19 @@ import seaborn as sns
 
 df = pd.read_stata('data/milanovic.dta')
 
-# Countries I want to look at
-countries = ['Nigeria','Brazil','Italy','United States','Sweden','Armenia','Czech Republic']
-
-df_subset = df[df['country'].isin(countries)]
 
 ## Filter for only the largest 'year' values for each 'country'
 # This gets me a bunch of years around 2008
-df_filtered = df_subset[df_subset['year'] == df_subset.groupby('country')['year'].transform('max')]
+df = df[df['year'] == df.groupby('country')['year'].transform('max')]
+
+# Remove any countries with at least one NAN in their income distributions
+df = df.groupby('country').filter(lambda x: x['RRinc'].notna().all())
+
+
+# Countries I want to look at
+countries = ['Nigeria','Brazil','United States','Sweden','Armenia','Czech Republic']
+
+df_subset = df[df['country'].isin(countries)]
 
 
 ## Plotting
@@ -49,7 +54,7 @@ plt.figure(figsize=(40, 32))
 scatter = sns.lineplot(
     x='group', y='RRinc', 
     hue='country', 
-    data=df_filtered,
+    data=df_subset,
     linewidth=5,
     legend='full'
 )
@@ -67,6 +72,6 @@ plt.legend(title='Country', title_fontsize=40, fontsize=30, markerscale=3,
 plt.xlabel('Income decile', fontsize=50, labelpad=30)
 plt.ylabel('Real annual income ($)', fontsize=50, labelpad=30)
 plt.title('Income per decile for selected countries in 2008', fontsize=60, pad=50, loc='left')
-
+plt.savefig('viz/real income distributions.png')  # Save the figure
 # Show the plot
 plt.show()

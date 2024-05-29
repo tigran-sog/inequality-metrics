@@ -42,6 +42,7 @@ plt.legend()
 #### multiple elasticities
 # List of different elasticity values
 elasticities = [0, 0.8, 0.9, 1, 1.1, 1.2]
+elasticities = [0, 0.5, 0.75, 1, 1.25]
 
 plt.figure(figsize=(15, 5))
 
@@ -57,9 +58,9 @@ for elasticity in elasticities:
 plt.title('Utility Function of Income for Different Elasticities')
 plt.xlabel('Income')
 plt.ylabel('Utility')
+plt.yscale('log')
 plt.grid(True)
-plt.legend()
-
+plt.legend(loc = 'upper right')
 
 # Plot marginal utilities for different elasticities
 plt.subplot(1, 2, 2)
@@ -75,7 +76,8 @@ plt.xlabel('Income')
 plt.ylabel('Marginal Utility')
 plt.yscale('log')
 plt.grid(True)
-plt.legend()
+plt.legend(loc = 'upper right')
 
 plt.tight_layout()
+plt.savefig('viz/utility across elasticity.png')
 plt.show()
