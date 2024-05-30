@@ -61,3 +61,8 @@ In this plot, we take the six income distributions introduced earlier and plot t
 
 ## Just how differently do countries rank with Gini vs. Atkinson
 
+![Image: Gini and Atkinson scatter plot](viz/atkinson%20gini%20scatter%20plot.png)
+
+![Image: Gini and Atkinson correlation](viz/atkinson%20gini%20correlation.png)
+
+![Image: Income varying E correlation](viz/income%20varying%20E%20correlation.png)

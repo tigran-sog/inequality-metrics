@@ -120,12 +120,14 @@ corr_results_df = pd.DataFrame(corr_results)
 
 # Plot correlation
 plt.figure(figsize=(15, 5))
-plt.plot(atkinson_parameter_range[1:], corr_results_df['coefficient'][1:], label='Spearman coefficient') #excluding parameter = 0
-plt.title('Correlation between Atkinson and Gini')
-plt.xlabel('Aversion parameter')
-plt.ylabel('Correlation between Atkinson and Gini')
+plt.plot(atkinson_parameter_range[1:201], corr_results_df['coefficient'][1:201], label='Spearman coefficient') #excluding parameter = 0
+plt.title('Correlation between Gini and Atkinson scores, varying E')
+plt.xlabel('Inequality aversion parameter, E')
+plt.ylabel('Spearman coefficient')
 plt.grid(True)
 plt.legend()
+plt.tight_layout()
+plt.savefig('viz/atkinson gini correlation.png')
 plt.show()
 
 
@@ -135,15 +137,17 @@ example_parameters = [0.25, 0.5, 0.75, 1, 1.5, 2, 4]
 plt.figure(figsize=(15, 15))
 for parameter in example_parameters:
     atkinsons = atkinson_results_df[atkinson_results_df['parameter'] == parameter].iloc[:,2]
-    plt.scatter(gini_results_df.iloc[:,2],atkinsons,label=f'parameter = {parameter}')
+    plt.scatter(gini_results_df.iloc[:,2],atkinsons,label=f'E = {parameter}')
 plt.plot((0,1), (0,1), linestyle='--', color='gray', linewidth=1, label='x = y')
-plt.title('Correlation between Atkinson and Gini')
+plt.title('Countries by Gini and Atkinson parameters')
 plt.xlim(0,1)
 plt.ylim(0,1)
 plt.ylabel('Atkinson index')
 plt.xlabel('Gini index')
 plt.grid(True)
 plt.legend()
+plt.tight_layout()
+plt.savefig('viz/atkinson gini scatter plot.png')
 plt.show()
 
 
