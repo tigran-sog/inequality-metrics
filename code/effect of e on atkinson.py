@@ -131,11 +131,13 @@ for parameter in E_array[1:]:
 corr_results_atk_df = pd.DataFrame(corr_results_atk)
 
 # Plot correlation
-plt.figure(figsize=(15, 10))
+plt.figure(figsize=(15, 5))
 plt.plot(E_array[1:], corr_results_atk_df['coefficient'], label='Spearman coefficient') #excluding parameter = 0
 plt.title('Correlation between income per capita vs. inequality-adjusted incomes per capita')
 plt.xlabel('Inequality aversion parameter, E')
 plt.ylabel('Spearman coefficent')
 plt.grid(True)
 plt.legend()
+plt.tight_layout()
+plt.savefig('viz/income varying E correlation.png')
 plt.show()
