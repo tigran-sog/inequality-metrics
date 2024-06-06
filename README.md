@@ -1,6 +1,8 @@
 # inequality-metrics
 
-One of the best known ways of measuring income inequality in a population is the **Gini coefficient**. Taking values from 0 to 1, it is calculated as "the expected gap as a share of twice the mean income." In other words, if you were to find two random people on the street, what is the expected difference in their incomes (relative to the average income in that population). As such, it is a pure calculation of income distribution in a population, but it provides no information about whether that is a result of a few extreme "haves" or many "have-notes". Nor does it make any judgements about whether either type of inequality is more important.
+![Image: Income distributions of the United States, Sweden, Czechia, Brazil, Armenia and Nigeria](viz/real%20income%20distributions.png)
+
+There are many ways of measuring inequality in an income distribution. One of the best known ways is the **Gini coefficient**. Taking values from 0 to 1, it is calculated as "the expected gap as a share of twice the mean income." In other words, if you were to find two random people on the street, what is the expected difference in their incomes (relative to the average income in that population). As such, it is a pure calculation of income distribution in a population, but it provides no information about whether that is a result of a few extreme "haves" or many "have-nots". Nor does it make any judgements about whether either type of inequality is more important.
 
 One inequality measure that does make such judgements is the **Atkinson index**. Its best known use is in the United Nations' inequality-adjusted Human Development Index (IHDI). Also taking values from 0 to 1, its key difference is that it assumes a diminishing marginal utility of income. Thus, it actively de-emphasises inequality at the upper end of the distribution, putting more weight on differences between lower incomes. This assumption is regulated in the Atkinson by an "inequality aversion parameter", $\epsilon$. 
 
@@ -29,17 +31,8 @@ where $y_i$ is individual income $(i = 1, 2, \ldots, N)$ and  $\mu$ is the mean 
  </div>
 
 
-$\epsilon$ is the "inequality aversion parameter". It is equivalent to the income elasticity of the marginal utility of income, in other words it is the rate at which the marginal utility of income changes as income itself changes. Typically, this is denoted in economics as $\rho$. When $\rho$ is 1, the marginal utility of income is inversely proportional to income:
+$\epsilon$ is the "inequality aversion parameter". It is equivalent to the income elasticity of the marginal utility of income, in other words it is the rate at which the marginal utility of income changes as income itself changes. In economics, this is typically denoted as $\rho$. When $\rho$ is 1, utility, $u$, is logarithmically related to income and the marginal utility of income is inversely proportional to income:
 
-
-
-
-<div style="text-align: right"> Source: <a href="https://eprints.lse.ac.uk/19745/1/The_Marginal_Utility_of_Income.pdf">Layard et al. 2007</a>
- </div>
-
-The Atkinson measure used in the IHDI also sets this parameter to 1. 
-
-But it can be set to any non-negative value, and the higher the value is, the more that inequality at lower ends of the income distribution is emphasised. We can try to intuitively understand this by relating it to the utility function of income:
 
 $$
 u =
@@ -49,34 +42,39 @@ u =
 \end{cases}
 $$
 
+
+<div style="text-align: right"> Source: <a href="https://eprints.lse.ac.uk/19745/1/The_Marginal_Utility_of_Income.pdf">Layard et al. 2007</a>
+ </div>
+
+The Atkinson measure used in the IHDI also sets this parameter to 1. But it can be set to any non-negative value, and the higher the value is, the more that inequality at the lower end of the income distribution is emphasised. We can try to intuitively understand this by relating it to the utility function of income:
+
+
 ![Image: Utility functions across different income elasticities](viz/utility%20across%20elasticity.png)
 
-On the left is utility plotted against income. On the right is the marginal utility at each level of income (in other words, it is plotting the derivative of the utility function presented in the first graph).
+On the left is utility plotted against income. On the right is the marginal utility at each level of income (in other words, it is the derivative of the utility function presented in the first graph).
 
-When $\rho/\epsilon$ is at 1 (green line), utility has a logarithmic relationship with income, and the marginal utilities are inversely proportional to income, as seen in the equation above. If we increase rho or E even further, marginal utiilty decays even more strongly, and utility "plateaus" even sooner against income. And if we set $\rho/\epsilon$ at 0, there is no decay in marginal utility over income and utility increases linearly with income (blue line).
-
-When the Atkinson measure incorporates a value of $\epsilon$ above 0, it is assuming that differences in incomes among poorer sections of society are more important than other differences in incomes. We can see how this bears out mathematically in the next section.
+When $\rho/\epsilon$ is at 1 (green line), utility has a logarithmic relationship with income, with marginal utility inversely proportional to income. If we increase $\rho/\epsilon$ even further, marginal utility decays even more strongly and utility plateaus sooner. Therefore, when applied to the context of the Atkinson index, higher values of $\epsilon$ assume that differences in incomes among poorer sections of society are more important than other differences among higher incomes. We can see how this bears out mathematically in the next section.
 
 ## Visualising how E responds to inequalities in different parts of the income distribution
 
-Above, we showed the full equation to calculate the Atkinson measure. In fact, it can be understood in a much simpler form:
+Earlier, we showed the full equation to calculate the Atkinson measure. In fact, it can be understood in a much simpler form:
 
 
 $$
 A_\epsilon  =
 1 - \frac{\text{generalised mean}^{1-\epsilon}}{\text{arithmetic mean}} $$
 
-In other words, the Atkinson index is the complement to 1 of the ratio of the Hölder generalized mean of exponent 1−$\epsilon$ to the arithmetic mean of the incomes (where the generalized mean of exponent 0 is equivalent to the geometric mean). Thus, varying the exponent 1 - $\epsilon$ varies the generalised mean. The lower the generalised mean is than the arithmetic mean, the higher the Atkinson measure of inequality will be.
+In other words, the Atkinson index is the complement to 1 of the ratio of the Hölder generalized mean of exponent 1−$\epsilon$ to the arithmetic mean of the incomes (where the generalized mean of exponent 0 is equivalent to the geometric mean). As such, varying the exponent 1 - $\epsilon$ varies the generalised mean. The lower the generalised mean is than the arithmetic mean, the higher the Atkinson measure of inequality will be.
 
-We can demonstrate this by taking a simple distribution and plotting its **arithmetic mean** (blue, $\epsilon = 0$) against various **generalised means** (coloured lines, $\epsilon > 0$). Let's take a simple array of four values to represent quartiles of an income distribution. For each quartile, we vary its value and see what effect it has on the generalised means of the distribution.
+We can demonstrate this by taking a simple distribution and plotting its **arithmetic mean** (blue, $\epsilon = 0$) against various **generalised means** (coloured lines, $\epsilon > 0$), and interpreting inequality as the distance between those two lines. Let's take a simple array of four values, $[2, 4, 6, 8]$, to represent quartiles of an income distribution. For each quartile, we vary its value $x$ and see what effect it has on the generalised means of the distribution.
 
 ![Image: Generalised means for quartile-segmented distribution](viz/generalised%20mean%20quartiles%20dist.png)
 
-At higher positive values of $\epsilon$, the lower the generalised mean of the distribution generally is compared to the arithmetic mean. But this effect is different when varying *x* at different quartiles.
+At higher positive values of $\epsilon$, the lower the generalised mean of the distribution generally is compared to the arithmetic mean. But this effect is different when $x$ is varied at different quartiles.
 
-A look at the first quartile (top left) compared to the rest immediately shows how the Atkinson index treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, therefore, varying x creates both the most *and* the least inequality compared to any other quartile in the distribution.
+A look at the first quartile (top left) compared to the rest immediately shows how the Atkinson index treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, varying x creates both the most *and* the least inequality compared to any other quartile in the distribution.
 
-In other words, making the lowest quartile particularly poor hugely affects increases the level of inequality determined across the whole income distribution. Whereas making it nearly indistinguishable to the quartile above it also makes the whole income distribution more equal than when varying any other quartile. Comparatively, adjustments to the other quartiles yield only moderate levels of inequality at any level of that quartile.
+In other words, making the lowest quartile particularly poor hugely affects increases the level of inequality determined across the whole income distribution. Whereas bringing it closer to the middle incomes makes the whole income distribution more equal than when varying any other quartile. Comparatively, adjustments to the other quartiles yield only moderate levels of inequality at any level of that quartile.
 
 And what of the effect of $\epsilon$ on how severely inequality is determined? We can see that for higher values of $\epsilon$, the gap between the arithmetic mean and the generalised mean increases. But a second property is the steepness of each curve
 

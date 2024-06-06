@@ -42,7 +42,8 @@ plt.legend()
 #### multiple elasticities
 # List of different elasticity values
 elasticities = [0, 0.8, 0.9, 1, 1.1, 1.2]
-elasticities = [0, 0.5, 0.75, 1, 1.25]
+elasticities = [0.75, 1, 1.25]
+
 
 plt.figure(figsize=(15, 5))
 
