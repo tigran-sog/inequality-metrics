@@ -31,13 +31,18 @@ def gini(income_dist, x, position):
 
     # Create an array of order rankings (1-based index)
     order_ranking = np.arange(1, len(income_dist) + 1)
+    print(order_ranking)
     
     # Multiply each element by its order ranking
     result = income_dist * order_ranking
-    
+    print(result)
     # Calculate Gini coefficent
-    gini = (2*np.sum(result)) / (len(income_dist)*np.sum(income_dist)) - ((len(income_dist) + 1) / len(income_dist))
-    
+    gini_A = ((2*np.sum(result)) / (len(income_dist)*np.sum(income_dist)))
+    gini_B = (((len(income_dist) + 1) / len(income_dist)))
+    print(gini_A)
+    print(gini_B)
+    gini = gini_A - gini_B
+    print(gini)
     return gini
 
 
