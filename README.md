@@ -50,7 +50,7 @@ The Atkinson measure used in the IHDI sets this parameter of $\rho/\epsilon$ to 
 
 ![Image: Utility functions across different income elasticities](viz/utility%20across%20elasticity.png)
 
-By plotting the utility function of income (and its derivative, the marginal utility of income) at increasing values of $\rho/\epsilon$, we can see how marginal utility decays even more strongly and the utility plateaus sooner. Therefore, when applied to the context of the Atkinson index, higher values of $\epsilon$ assume that differences in incomes among poorer sections of society are more important than other differences among higher incomes.
+By plotting the utility function of income (and its derivative, the marginal utility of income) at increasing values of $\rho/\epsilon$, we can see how marginal utility decays even more strongly and utility plateaus even sooner. Therefore, when applied to the context of the Atkinson index, higher values of $\epsilon$ assume that differences in incomes among poorer sections of society are more important than other differences among higher incomes.
 
 Let's try and see how this works empirically by applying different Atkinson indices to income distributions with more or less inequality in the lower ends of the distribution.
 
@@ -97,3 +97,11 @@ Recall that Gini is insensitive to inequalities in specific parts of the income 
 ![Image: Gini and Atkinson quartiles](viz/gini%20vs%20atkinson%20quartiles%20dist.png)
 
 When varying the second to fourth quartiles, the Gini and Atkinson measures yield similar slopes. However, looking at the first quartile, again we see how dramatically the Atkinson measure varies across different values of $x$. When $x$ is low enough here (representing extreme inequality amongst the poorest), the Atkinson index actually exceeds the Gini coefficient - the only situation in which it does that.
+
+## Exploring Atkinson inequalities of European countries in more detail
+
+Having a more intuitive understanding of how the Atkinson measure reacts to different types of income distribution, let's explore one of its most notable applications, the inequality-adjusted Human Development Index in more detail. 
+
+Check out [**this repository**](https://github.com/tigran-sog/clustering-europe) where we decompose the index into its Human Development score and its Atkinson measure and use *k*-means clustering on these two variables to categorise European countries.
+
+![Image: European countries by human development and inequality](viz/plot%20k4.png)
