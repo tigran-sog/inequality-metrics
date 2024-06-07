@@ -72,16 +72,14 @@ We can demonstrate this by taking a simple distribution and plotting its **arith
 
 At higher positive values of $\epsilon$, the lower the generalised mean of the distribution generally is compared to the arithmetic mean. But this effect is different when $x$ is varied at different quartiles.
 
-A look at the first quartile (top left) compared to the rest of the quartiles immediately shows how the Atkinson index treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, varying x from low to high yields both the most *and* the least inequality compared to any other quartile in the distribution.
+A look at the first quartile (top left) compared to the rest of the quartiles immediately shows how the Atkinson index treats inequalities at the lower end of the distribution more severely. Recall that the distance between the arithmetic mean and the generalised mean(s) determines the level of inequality. In the first quartile, varying $x$ from low to high yields both the most *and* the least inequality compared to any other quartile in the distribution.
 
 In other words, making the lowest quartile particularly poor hugely affects increases the level of inequality determined across the whole income distribution. Whereas bringing it closer to the middle incomes makes the whole income distribution more equal than when varying any other quartile. Comparatively, adjustments to the other quartiles yield only moderate levels of inequality at any level of that quartile.
 
-And what of the effect of $\epsilon$ on how severely inequality is determined? We can see that for higher values of $\epsilon$, the gap between the arithmetic mean and the generalised mean increases. But a second property is the steepness of each curve
-
-In these graphs, we should focus less on the relative positions of the curves on the y-axis and more on the steepness of each individal curve to understand the effect of E. We can shed light on this artefact further by using real national income distributions.
+And what of the effect of $\epsilon$ on how severely inequality is determined? We can see that for higher values of $\epsilon$, the gap between the arithmetic mean and the generalised mean increases. But also, the drop-off in the curve at lower values of $x$ starts sooner when $\epsilon$ is higher, exhibiting the greater sensitivity to inequalities at lower incomes for higher levels of $\epsilon$. We can shed light on this artefact further by testing the effects of $\epsilon$ on real national income distributions.
 
 
-## Effect of E on the generalised means of real income distributions
+## Effect of $\epsilon$ on the generalised means of real income distributions
 
 ![Image: Income distributions of the United States, Sweden, Czechia, Brazil, Armenia and Nigeria](viz/real%20income%20distributions.png)
 ![Image: Generalised means for real national income distribution](viz/generalised%20means%20countries.png)
@@ -94,7 +92,7 @@ Recalling that an $\epsilon$ of 0 (leftmost point on the graph) yields the arith
 
 ## How differently do Gini and Atkinson treat the same distribution?
 
-Returning to the example income distributions we introduced earlier, we can see how the Atkinson index and Gini coefficent differ when calculating the same distribution:
+Recall that Gini is insensitive to inequalities in specific parts of the income distribution, rather it interprets inequality in the population holistically. Returning to the example income distributions we introduced earlier, we can see how the Atkinson index and Gini coefficent differ when calculating the same distribution:
 
 ![Image: Gini and Atkinson quartiles](viz/gini%20vs%20atkinson%20quartiles%20dist.png)
 
