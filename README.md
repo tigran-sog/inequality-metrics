@@ -54,7 +54,7 @@ $$
 A_\epsilon  =
 1 - \frac{\text{generalised mean}^{1-\epsilon}}{\text{arithmetic mean}} $$
 
-In other words, the Atkinson index is the complement to 1 of the ratio of the Hölder generalized mean of exponent $1 − \epsilon$ to the arithmetic mean of the incomes (where the generalized mean of exponent $0$ is equivalent to the geometric mean). So, varying the exponent $1 - \epsilon$ varies the generalised mean. The IHDI sets $\epsilon$ to 1, which sets the generalised mean to the geometric mean and, returning to the utility function, assumes a logarithmic relationship between utility and income.
+In other words, the Atkinson index is the complement to 1 of the ratio of the [Hölder generalised mean](https://proofwiki.org/wiki/Definition:H%C3%B6lder_Mean#Also_known_as) of exponent $1 − \epsilon$ to the arithmetic mean of the incomes (where the generalised mean of exponent $0$ is equivalent to the geometric mean). So, varying the exponent $1 - \epsilon$ varies the generalised mean. The IHDI sets $\epsilon$ to 1, which sets the generalised mean to the geometric mean and, returning to the utility function, assumes a logarithmic relationship between utility and income.
 
 The lower the generalised mean is from the arithmetic mean, the higher the Atkinson measure of inequality will be.
 
