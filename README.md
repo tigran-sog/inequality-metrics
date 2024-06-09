@@ -79,14 +79,14 @@ And what of the effect of $\epsilon$ on how severely inequality is determined? W
 ![Image: Generalised means for real national income distribution](viz/generalised%20means%20countries.png)
 
 
-Here, we introduce six countries all with different combinations of income and inequality levels, to help us understand the full variation in measuring income inequality. In the left plot, we can see each country's income distribution over ten deciles, while in the right plot, we plot the generalised means of their distributions at different levels of $\epsilon$.
+Here, we introduce six countries all with different combinations of income and inequality levels, to help us understand the full variation in measuring income inequality. In the left plot, we can see each country's income distribution over ten deciles, while in the right plot, we plot the generalised means of their distributions at different levels of the inequality aversion parameter, $\epsilon$.
 
-Recalling that an $\epsilon$ of 0 (leftmost point on the graph) yields the arithmetic mean, and that the Atkinson index is determined by the difference between the arithmetic mean and the generalised mean, we can see how that countries with steeper drop-offs in their curves have more inequalities in their income distributions -- especially in the lower deciles. Namely, the United States, Brazil and Nigeria. On the other hand, Sweden, the Czech Republic and Armenia (all countries with drastically different income per capita levels but similarly flat income distrbutions) correspondingly have flatter curves on the right graph.
+Recalling that an $\epsilon$ of 0 (leftmost point on the graph) yields the arithmetic mean, and that the Atkinson index is determined by the difference between the arithmetic mean and the generalised mean, we can see how countries with more inequalities in their income distributions (especially in the lower deciles), like the United States, Brazil and Nigeria, have steeper drop-offs in their curves. On the other hand, Sweden, the Czech Republic and Armenia (all countries with drastically different income per capita levels but similarly flat income distributions) correspondingly have flatter curves on the right graph.
 
 
 ## How differently do Gini and Atkinson treat the same distribution?
 
-Recall that Gini is insensitive to inequalities in specific parts of the income distribution. Rather, it interprets inequality in the population holistically. Returning to the simple, quartile-based distributions we introduced earlier, we can observe how the Atkinson index and Gini coefficent differ when measuring the same distribution:
+Recall that Gini is insensitive to inequalities in specific parts of the income distribution. Rather, it interprets inequality in the population holistically. Returning to the simple, quartile-based distributions we introduced earlier, we can observe how the Atkinson index and Gini coefficient differ when measuring the same distribution:
 
 ![Image: Gini and Atkinson quartiles](viz/gini%20vs%20atkinson%20quartiles%20dist.png)
 
@@ -94,8 +94,8 @@ When varying the second to fourth quartiles, the Gini and Atkinson measures yiel
 
 ## Exploring Atkinson inequalities of European countries in more detail
 
-Having gained a more intuitive understanding of how the Atkinson measure reacts to different types of income distribution, let's explore one of its most notable applications - the inequality-adjusted Human Development Index - in more detail. 
+Having gained a more intuitive understanding of how the Atkinson measure reacts to different types of income distributions, let's explore one of its most notable applications - the inequality-adjusted Human Development Index - in more detail. 
 
-Check out [**this repository**](https://github.com/tigran-sog/clustering-europe) where we decompose the index into its Human Development score and its Atkinson measure and use *k*-means clustering on these two variables to categorise European countries...
+Check out [**this repository**](https://github.com/tigran-sog/clustering-europe) where I decompose the index into its Human Development score and its Atkinson measure and use *k*-means clustering to categorise European countries based on their societal development and their inequality.
 
 ![Image: European countries by human development and inequality](viz/plot%20k4.png)
