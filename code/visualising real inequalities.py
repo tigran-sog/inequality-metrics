@@ -10,9 +10,15 @@ Created on Thu May 16 13:25:36 2024
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib as plt
 
 
-#### Generating income distributions
+## Set the font family globally
+from matplotlib import font_manager as fm, rcParams
+font_path = 'C:/WINDOWS/FONTS/TITILLIUMWEB-REGULAR.TTF'  # Update this path to the actual font path
+fm.fontManager.addfont(font_path)
+plt.rcParams['font.family'] = 'Titillium Web'
+
 
 
 #### Downloading existing income distributions
@@ -74,7 +80,7 @@ plt.xlabel('Income decile', fontsize=60, labelpad=30)
 plt.ylabel('Real annual income ($)', fontsize=60, labelpad=30)
 plt.ylim(80,100000)
 plt.title('Income per decile for selected countries', fontsize=90, pad=50, loc='left',  color = '#1D5B79')
-#plt.tight_layout()
+plt.tight_layout()
 
 plt.savefig('viz/real income distributions.png')  # Save the figure
 # Show the plot
