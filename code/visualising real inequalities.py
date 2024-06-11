@@ -50,12 +50,13 @@ plt.style.use("fivethirtyeight")
 # Set the size of the figure
 plt.figure(figsize=(40, 32))
 
+
 # Create the line plot
-scatter = sns.lineplot(
+line = sns.lineplot(
     x='group', y='RRinc', 
     hue='country', 
     data=df_subset,
-    linewidth=5,
+    linewidth=15,
     legend='full'
 )
 
@@ -66,12 +67,16 @@ plt.yscale('log')
 plt.gca().yaxis.set_major_formatter(FuncFormatter(yaxis_format))
 
 # Adjust font size of plot elements
-plt.tick_params(axis='both', which='major', labelsize=40)  # Adjust font size for x and y axes
-plt.legend(title='Country', title_fontsize=40, fontsize=30, markerscale=3,
+plt.tick_params(axis='both', which='major', labelsize=60)  # Adjust font size for x and y axes
+plt.legend(title='Country', title_fontsize=60, fontsize=40, markerscale=5,
            frameon=True, facecolor='#FCFCFC')
-plt.xlabel('Income decile', fontsize=50, labelpad=30)
-plt.ylabel('Real annual income ($)', fontsize=50, labelpad=30)
-plt.title('Income per decile for selected countries in 2008', fontsize=60, pad=50, loc='left')
+plt.xlabel('Income decile', fontsize=60, labelpad=30)
+plt.ylabel('Real annual income ($)', fontsize=60, labelpad=30)
+plt.ylim(80,100000)
+plt.title('Income per decile for selected countries', fontsize=90, pad=50, loc='left',  color = '#1D5B79')
+#plt.tight_layout()
+
 plt.savefig('viz/real income distributions.png')  # Save the figure
 # Show the plot
 plt.show()
+

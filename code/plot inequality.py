@@ -61,9 +61,10 @@ def plot_inequality(dist, position, x_range, E_array):
             plt.plot(x_array, np.array([atkinson(dist, x, position, E) for x in x_array]),
                      label = f'E = {E}')
    plt.yticks(np.arange(0,1.1,0.1))
-   plt.title(f'Varying E for generalised means {dist_title}')
-   plt.ylabel('Generalisd mean')
-   plt.xlabel('x')
+   plt.title(f'Varying E for generalised means {dist_title}', fontsize = 30,  color = '#1D5B79')
+   plt.ylabel('Generalisd mean', fontsize = 25)
+   plt.xlabel('x', fontsize = 25)
+   plt.tick_params(axis='both', which='major', labelsize=20)  # Adjust font size for x and y axes
    plt.tight_layout()
    plt.grid(True)
    plt.legend(loc = 'lower right')

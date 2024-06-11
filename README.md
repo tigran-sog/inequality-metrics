@@ -2,14 +2,13 @@
 
 ![Image: Income distributions of the United States, Sweden, Czechia, Brazil, Armenia and Nigeria](viz/real%20income%20distributions.png)
 
-There are many ways of measuring inequality in an income distribution. One of the best known ways is the **Gini coefficient**. Taking values from 0 to 1, it is calculated as "the expected gap as a share of twice the mean income." In other words, if you were to find two random people on the street, what is the expected difference in their incomes (relative to the average income in that population)? This is a pure calculation of the distribution of income in a population, but provides no information about whether that inequality is a result of a few extreme "haves", or of many "have-nots". Nor does it make any judgements about whether either type of inequality is more important.
+There are many ways of measuring inequality in an income distribution. Different measures have different trade-offs about the kind of information that needs to be preserved when aggregating an entire distribution into one number that represents the amount of inequality present within it.
 
-One inequality measure that does make such judgements is the **Atkinson index**. Its best known use is in the United Nations' inequality-adjusted Human Development Index (IHDI). Also taking values from 0 to 1, the Atkinson index's key difference is that it assumes a diminishing marginal utility of income. Thus, it actively de-emphasises inequality at the upper end of the distribution, putting more weight on differences between lower incomes. This assumption is regulated in the Atkinson by an "inequality aversion parameter", $\epsilon$. 
+One of the best known measures is the **Gini coefficient**. Taking values from 0 to 1, it is calculated as "the expected gap as a share of twice the mean income." In other words: if you were to find two random people on the street, what is the expected difference in their incomes, relative to the average income in that population? While it certainly captures how disparately income is distributed in a population, it provides no information about whether that inequality is a result of a few extreme "haves", or of many "have-nots". Nor does it make any judgements about whether either type of inequality is more important.
 
-In this repository, we explore how the Atkinson index works, its relationship to the utility function of income, how it reacts to changes in lower parts of the income distribution compared to higher parts and to what extent its results differ with Gini coefficients of real countries' income distributions.
+One inequality measure that does make such judgements is the **Atkinson index**. Its best known use is in the United Nations' [inequality-adjusted Human Development Index (IHDI)](https://en.wikipedia.org/wiki/List_of_countries_by_inequality-adjusted_Human_Development_Index). Also taking values from 0 to 1, the Atkinson index's key difference is that it assumes a diminishing marginal utility of income. This actively de-emphasises inequality at the upper end of the distribution, putting more weight on differences between lower incomes. This assumption is regulated in the Atkinson by an "inequality aversion parameter", $\epsilon$. 
 
-
-
+In this repository, we explore how the Atkinson index works, its relationship to the utility function of income, how it reacts to changes in lower parts of the income distribution compared to higher parts, how it reacts to real countries' income distributions and how it compares with the Gini coefficient when measuring identical distributions.
 
 
 ## Atkinson index and the marginal utility of income
@@ -75,9 +74,7 @@ And what of the effect of $\epsilon$ on how severely inequality is determined? W
 
 ## Effect of $\epsilon$ on the generalised means of real income distributions
 
-![Image: Income distributions of the United States, Sweden, Czechia, Brazil, Armenia and Nigeria](viz/real%20income%20distributions.png)
-![Image: Generalised means for real national income distribution](viz/generalised%20means%20countries.png)
-
+![Image: Income distributions vs. Generalised means for real national income distribution](viz/real%20income%20distributions%20vs%20generalised.png)
 
 Here, we introduce six countries all with different combinations of income and inequality levels, to help us understand the full variation in measuring income inequality. In the left plot, we can see each country's income distribution over ten deciles, while in the right plot, we plot the generalised means of their distributions at different levels of the inequality aversion parameter, $\epsilon$.
 
@@ -98,4 +95,5 @@ Having gained a more intuitive understanding of how the Atkinson measure reacts 
 
 Check out [**this repository**](https://github.com/tigran-sog/clustering-europe) where I decompose the index into its Human Development score and its Atkinson measure and use *k*-means clustering to categorise European countries based on their societal development and their inequality.
 
-![Image: European countries by human development and inequality](viz/plot%20k4.png)
+
+![Image: Scatter plot of European countries by human development and inequality, coloured by k-means clustering results](viz/k4%20plot.png)

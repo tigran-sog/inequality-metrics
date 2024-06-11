@@ -10,6 +10,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 from scipy.stats import gmean
+from matplotlib.ticker import FuncFormatter
+
+# Function to format the y-axis labels
+def axis_format(y, pos):
+    return f'{int(y):,}'
+
+
 
 #### PLOTTING GENERALISED MEANS
 
@@ -26,16 +33,7 @@ def generalised_mean2(x, p):
         return gmean(x)
     else:    
         return (np.sum(np.power(x,p)) / len(x))**(1/p)
-
-def generalised_mean_dist(x, p):
-    array = [2,4,6,8]
-    array[1] = x
-    if p == 0:
-        return geometric(x)
-    else:
-        np.sum(np.power(array,p)) / len()
-        
-        
+                
 def generalised_mean3(dist,x,position,p):
     dist[position] = x
     dist = np.array(dist, dtype=float)  # Ensure dist elements are floats
@@ -45,23 +43,6 @@ def generalised_mean3(dist,x,position,p):
         return (np.sum(np.power(dist,p)) / len(dist))**(1/p)
 
 E_array = [0,0.25,0.75,1,2,4]
-
-# Plotting generalised (1,x)
-x_array = np.arange(0,4.01,0.01)
-two_value_dist = [1,2]
-plt.figure(figsize=(10,10))
-for E in E_array:
-    p = 1 - E
-    plt.plot(x_array, np.array([generalised_mean3(two_value_dist, x, 1, p) for x in x_array]),
-             label = f'E = {E} (p = {p})')
-plt.title('Varying E for generalised means of simple mean of 1 and x')
-plt.xlabel('(1,x)')
-plt.ylabel('Generalisd mean')
-plt.tight_layout()
-plt.grid()
-plt.legend()
-plt.show()
-
 
 
 def plot_generalised_means(dist, position, x_range, E_array):
@@ -80,9 +61,10 @@ def plot_generalised_means(dist, position, x_range, E_array):
        plt.plot(x_array, np.array([generalised_mean3(dist, x, position, p) for x in x_array]),
                 label = f'E = {E} (p = {p})')
    plt.yticks(np.arange(0,y_max))
-   plt.title(f'Varying E for generalised means {dist_title}')
-   plt.ylabel('Generalisd mean')
-   plt.xlabel('x')
+   plt.title(f'Varying E for generalised means {dist_title}', fontsize = 30,  color = '#1D5B79')
+   plt.ylabel('Generalisd mean', fontsize = 25)
+   plt.xlabel('x', fontsize = 25)
+   plt.tick_params(axis='both', which='major', labelsize=20)  # Adjust font size for x and y axes
    plt.tight_layout()
    plt.grid(True)
    plt.legend(loc = 'lower right')
@@ -120,11 +102,16 @@ df = df[df['year'] == df.groupby('country')['year'].transform('max')]
 df = df.groupby('country').filter(lambda x: x['RRinc'].notna().all())
 
 # Countries I want to look at
-countries = ['United States','Sweden','Czech Republic','Brazil','Nigeria','Armenia']
+countries = ['Nigeria','Brazil','United States','Sweden','Armenia','Czech Republic']
 
 df_subset = df[df['country'].isin(countries)]
 
-plt.figure(figsize=(10,10))
+E_array = np.arange(0,10.1,0.1)
+
+# Use the 'fivethirtyeight' style for the plot
+plt.style.use("fivethirtyeight")
+
+plt.figure(figsize=(40,32))
 for country in countries:
     mean_results = []
     value = df_subset[df_subset['country'] == country].iloc[:,10]
@@ -133,13 +120,18 @@ for country in countries:
     for E in E_array:
         p = 1 - E
         mean_results.append(generalised_mean2(value,p))
-    plt.plot(E_array,mean_results, label = f'{country}')
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.title('Generalised mean of countries\' income distributions')
-    plt.ylabel('Generalised mean ($)')
-    plt.xlabel('Inequality aversion parameter (E)')
-    plt.legend()
+    plt.plot(E_array,mean_results, linewidth = 15)
+plt.xscale('log')
+plt.yscale('log')
+# Use FuncFormatter to format the y-axis labels
+plt.gca().yaxis.set_major_formatter(FuncFormatter(axis_format))
+plt.gca().xaxis.set_major_formatter(FuncFormatter(axis_format))
+plt.ylim(0,100000)
+plt.xlim(0,4)
+plt.tick_params(axis='both', which='major', labelsize=60)  # Adjust font size for x and y axes
+plt.title('Generalised mean of countries\' income distributions',fontsize=90, pad=50, loc='left',  color = '#1D5B79')
+plt.ylabel('Generalised mean ($)', fontsize=60, labelpad=30)
+plt.xlabel('Inequality aversion parameter (E)', fontsize=60, labelpad=30)
 plt.grid(True)
 plt.tight_layout()
 plt.savefig('viz/generalised means countries.png')
